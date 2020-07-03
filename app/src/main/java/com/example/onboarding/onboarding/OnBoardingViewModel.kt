@@ -23,7 +23,7 @@ class OnBoardingViewModel : ViewModel() {
         get() = _shouldSkip
 
     fun goToNextScreenOrFinish() {
-        if (_currentScreenIndex < screens.count()) {
+        if (_currentScreenIndex < screens.count() - 1) {
             _currentScreenIndex++
             _currentIndex.value = _currentScreenIndex
         }

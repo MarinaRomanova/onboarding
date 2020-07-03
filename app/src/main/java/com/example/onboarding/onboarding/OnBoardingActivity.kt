@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.layout_button_bottom_sheet.*
 
 class OnBoardingActivity : AppCompatActivity() {
     private val rgbEvaluator = ArgbEvaluator()
-    private val colors = arrayOf(R.color.blue_a30, R.color.mission_status_background_late, R.color.green_300_a50, R.color.blueGrey_300_a50)
+    private val colors = arrayOf(R.color.blue_a30, R.color.green_300_a50, R.color.blueGrey_300_a50, R.color.pink)
 
     private val viewModel: OnBoardingViewModel by viewModels { OnBoardingViewModelFactory() }
 
@@ -34,7 +34,11 @@ class OnBoardingActivity : AppCompatActivity() {
 
     private fun setupViews() {
         pager.adapter = OnBoardingViewPagerAdapter(this)
-        pager.registerOnPageChangeCallback(onPageChangeCallback)
+
+        pager.apply {
+            registerOnPageChangeCallback(onPageChangeCallback)
+            setPageTransformer(DepthPageTransformer())
+        }
 
         viewModel.currentIndex.observe(this, Observer {
             pager.setCurrentItem(it, true)
@@ -47,16 +51,6 @@ class OnBoardingActivity : AppCompatActivity() {
     }
 
     private var onPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
-        override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
-        ) {
-            val colorUpdate: Int = rgbEvaluator.evaluate(positionOffset, colors[position],
-                colors[ if (position == colors.size - 1) position else position + 1]) as Int
-            pager.setBackgroundColor(colorUpdate)
-        }
-
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
             viewModel.slideToPage(position)
