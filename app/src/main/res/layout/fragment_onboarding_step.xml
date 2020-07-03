@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".onboarding.OnBoardingStepFragment"
+    tools:background="@color/blue_a30">
+
+    <ImageView
+        android:id="@+id/onboarding_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_ctk_logo"
+        app:layout_constraintBottom_toTopOf="@+id/onboarding_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/onboarding_title"
+        style="@style/Onboarding.TextAppearance.SectionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_bounds_margin"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/screen_bounds_margin"
+        android:text="@string/onboarding_welcome_title"
+        app:layout_constraintBottom_toTopOf="@+id/onboarding_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onboarding_image" />
+
+    <TextView
+        android:id="@+id/onboarding_message"
+        style="@style/Onboarding.TextAppearance.Message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:text="@string/onboarding_welcome_message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/onboarding_title"
+        app:layout_constraintStart_toStartOf="@+id/onboarding_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
