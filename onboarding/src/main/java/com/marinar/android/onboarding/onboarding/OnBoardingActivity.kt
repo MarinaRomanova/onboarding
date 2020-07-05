@@ -20,6 +20,13 @@ import kotlinx.android.synthetic.main.layout_button_bottom_sheet.intro_btn_finis
 import kotlinx.android.synthetic.main.layout_button_bottom_sheet.intro_btn_next
 import kotlinx.android.synthetic.main.layout_button_bottom_sheet.intro_btn_skip
 
+/**
+ * @property colors represents colors to use as background for each item inside the pager
+ * @property fragments represents fragments to use inside the pager
+ * @property skipText represents text of Skip button
+ * @property previousText represents text of Previous button
+ * @property finishText represents text of Finish button
+ */
 abstract class OnBoardingActivity : AppCompatActivity() {
 
     //region Public Params
@@ -134,6 +141,12 @@ abstract class OnBoardingActivity : AppCompatActivity() {
     }
 
     //region Bar Colors
+    /**
+     * Sets up colors for the bottom bar
+     * @param barColorRes color of the bottom bar
+     * @param textColor color of the text (buttons and icons)
+     * @param accentColor color to use for an active slide indicator
+     */
     fun setBarColors(
         @ColorInt barColorRes: Int,
         @ColorInt textColor: Int,
@@ -151,10 +164,18 @@ abstract class OnBoardingActivity : AppCompatActivity() {
     //endregion
 
     //region Images
+    /**
+     * Sets up
+     * @param drawable to use as the moving image
+     */
     fun setMovingImageDrawable(drawable: Drawable) {
         moving_iv.setImageDrawable(drawable)
     }
 
+    /**
+     * Sets up
+     * @param drawable to use as background behind the moving image
+     */
     fun setBackgroundDrawable(drawable: Drawable) {
         status_background_iv.setImageDrawable(drawable)
     }
@@ -164,20 +185,39 @@ abstract class OnBoardingActivity : AppCompatActivity() {
     private var clickListener: ClickListener? = null
 
     interface OnPageChangedListener {
+        /**
+         * a callback to be used when page is changed inside the pager
+         * @param position of the page inside the pager, starts at 0
+         */
         fun onPageChanged(position: Int)
     }
 
     interface ClickListener {
+        /**
+         * Callbback for the Finish button
+         */
         fun onFinish()
+
+        /**
+         * Callback for the Skip button
+         */
         fun onSkip()
     }
 
+    /**
+     * Sets up
+     * @param listener for  the bottom bar buttons
+     */
     fun setClickListener(listener: ClickListener) {
         this.clickListener = listener
     }
 
     private var onPageChanged: OnPageChangedListener? = null
 
+    /**
+     * Sets up
+     * @param listener for the page adapter
+     */
     fun setOnPageChangedListener(listener: OnPageChangedListener) {
         onPageChanged = listener
     }
