@@ -1,20 +1,5 @@
 <resources>
-    <string name="app_name">Onboarding</string>
     <string name="onboarding_btn_skip">Skip</string>
     <string name="onboarding_btn_finish">Finish</string>
-
-    <string name="onboarding_welcome_title">Welcome!</string>
-    <string name="onboarding_welcome_message">It seems like you are just getting started.\n\nLet\'s learn how you can get the most of Chronotruck Driver!</string>
-
-    <string name="onboarding_offer_title">Search freight</string>
-    <string name="onboarding_offer_message">Search freights using comprehensive filters and create custom searches for quick access!\n\nBook offers directly or make bids!</string>
-
-    <string name="onboarding_mission_title">Consult your missions</string>
-    <string name="onboarding_mission_message">Get info on upcoming, ongoing or passed missions. \n\nUpdate mission\'s tracking, submit documents.</string>
-
-    <string name="onboarding_settings_title">Get most of the App</string>
-    <string name="onboarding_settings_message">Configure Notifications and Location to get notified about new freight next to you and get help with your mission!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="onboarding_btn_previous">Previous</string>
 </resources>

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="match_parent"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:layout_gravity="bottom"
-    android:background="@color/primary"
     android:paddingStart="@dimen/screen_bounds_margin"
     android:paddingLeft="@dimen/screen_bounds_margin"
     android:paddingEnd="@dimen/screen_bounds_margin"
     android:paddingRight="@dimen/screen_bounds_margin"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="@android:color/black">
 
     <Button
         android:id="@+id/intro_btn_skip"
@@ -15,55 +16,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center"
-        android:text="@string/onboarding_btn_skip"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:text="@string/onboarding_btn_skip" />
 
     <com.example.onboarding.view.SlideIndicator
         android:id="@+id/slider_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
-
-    <!--<LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/intro_indicator_0"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginEnd="@dimen/activity_margin_half"
-            android:layout_marginRight="@dimen/activity_margin_half"
-            android:background="@drawable/indicator_unselected" />
-
-        <ImageView
-            android:id="@+id/intro_indicator_1"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginEnd="@dimen/activity_margin_half"
-            android:layout_marginRight="@dimen/activity_margin_half"
-            android:background="@drawable/indicator_unselected" />
-
-        <ImageView
-            android:id="@+id/intro_indicator_2"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginRight="@dimen/activity_margin_half"
-            android:layout_marginEnd="@dimen/activity_margin_half"
-            android:background="@drawable/indicator_unselected" />
-
-        <ImageView
-            android:id="@+id/intro_indicator_3"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginEnd="@dimen/activity_margin_half"
-            android:background="@drawable/indicator_unselected" />
-
-        &lt;!&ndash; Your other 2 indicators here &ndash;&gt;
-
-    </LinearLayout>-->
 
     <!-- This overlaps the next button in the last slide -->
     <Button
@@ -72,9 +32,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center"
-        android:text="@string/onboarding_btn_finish"
         android:textColor="@android:color/white"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:text="@string/onboarding_btn_finish" />
 
     <ImageButton
         android:id="@+id/intro_btn_next"

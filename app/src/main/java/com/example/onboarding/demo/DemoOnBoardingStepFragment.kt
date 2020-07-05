@@ -1,4 +1,4 @@
-package com.example.onboarding.onboarding
+package com.example.onboarding.demo
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -15,7 +15,7 @@ private const val ARG_TITLE_RES = "onboarding:title_res"
 private const val ARG_MESSAGE_RES = "onboarding:message_res"
 private const val ARG_IMAGE_RES = "onboarding:image_res"
 
-class OnBoardingStepFragment : Fragment() {
+class DemoOnBoardingStepFragment : Fragment() {
 
     private val ctxt: Context by lazy { requireContext() }
 
@@ -45,8 +45,8 @@ class OnBoardingStepFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(screen: OnBoardingScreen) =
-            OnBoardingStepFragment().apply {
+        fun newInstance(screen: DemoOnBoardingScreen) =
+            DemoOnBoardingStepFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_TITLE_RES, screen.titleRes)
                     putInt(ARG_MESSAGE_RES, screen.messageRes)

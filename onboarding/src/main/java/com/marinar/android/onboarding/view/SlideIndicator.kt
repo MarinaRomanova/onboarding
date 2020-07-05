@@ -1,12 +1,15 @@
 package com.example.onboarding.view
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import com.marinar.android.onboarding.R
@@ -17,10 +20,8 @@ class SlideIndicator @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private var selectedDrawable: Drawable? =
-        ContextCompat.getDrawable(context!!, R.drawable.indicator_selected)
-    private var unselectedDrawable: Drawable? =
-        ContextCompat.getDrawable(context!!, R.drawable.indicator_unselected)
+    private var selectedTint: Int = Color.GREEN
+    private var unselectedTint: Int = Color.WHITE
 
     private val items = mutableListOf<ImageView>()
 
@@ -59,20 +60,20 @@ class SlideIndicator @JvmOverloads constructor(
     fun setSelected(position: Int) {
         if (position > sliderCount - 1) return
         children.forEach {
-            (it as ImageView).setImageDrawable(
+            (it as ImageView).setColorFilter(
                 (if (it == getChildAt(position))
-                    selectedDrawable
+                    selectedTint
                 else
-                    unselectedDrawable)
+                    unselectedTint)
             )
         }
     }
 
-    fun setSelectedDrawableRes(drawable: Drawable) {
-        this.selectedDrawable = drawable
+    fun setSelectedDrawableTint(@ColorInt colorRes: Int) {
+        this.selectedTint = colorRes
     }
 
-    fun setUnselectedDrawableRes(drawable: Drawable) {
-        this.unselectedDrawable = drawable
+    fun setUnselectedDrawableTint(@ColorInt colorRes: Int) {
+        this.unselectedTint = colorRes
     }
 }

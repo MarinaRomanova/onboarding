@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 class OnBoardingViewModel(val screens: Int = 2) : ViewModel() {
     private var _currentScreenIndex: Int = 0
 
+    // region live data
     private val _currentIndex : MutableLiveData<Int> = MutableLiveData()
     val currentIndex: LiveData<Int>
         get() = _currentIndex
@@ -19,8 +20,9 @@ class OnBoardingViewModel(val screens: Int = 2) : ViewModel() {
     private val _shouldSkip : MutableLiveData<Boolean> = MutableLiveData()
     val shouldSkip: LiveData<Boolean>
         get() = _shouldSkip
+    //endregion
 
-    fun goToNextScreenOrFinish() {
+    fun goToNextScreen() {
         if (_currentScreenIndex < screens - 1) {
             _currentScreenIndex++
             _currentIndex.value = _currentScreenIndex
@@ -38,14 +40,14 @@ class OnBoardingViewModel(val screens: Int = 2) : ViewModel() {
         updateButtons()
     }
 
-    private fun updateButtons() {
-        _shouldFinish.value = _currentScreenIndex == screens - 1
-        _shouldSkip.value = _currentScreenIndex == 0
-    }
-
     fun slideToPage(position: Int) {
         _currentScreenIndex = position
         updateButtons()
+    }
+
+    private fun updateButtons() {
+        _shouldFinish.value = _currentScreenIndex == screens - 1
+        _shouldSkip.value = _currentScreenIndex == 0
     }
 }
 

@@ -7,6 +7,8 @@ import androidx.viewpager2.widget.ViewPager2
 
 class DepthPageTransformer : ViewPager2.PageTransformer {
     private val MIN_SCALE = 0.75f
+    private val TRANSPARENT = 0f
+    private val FULLY_VISIBLE = 1f
 
     override fun transformPage(page: View, position: Float) {
         page.apply {
@@ -14,11 +16,11 @@ class DepthPageTransformer : ViewPager2.PageTransformer {
             when {
                 position < -1 -> {
                     // This page is way off-screen to the left.
-                    alpha = 0f
+                    alpha = TRANSPARENT
                 }
                 position <= 0 -> {
                     // Use the default slide transition when moving to the left page
-                    alpha = 1f
+                    alpha = FULLY_VISIBLE
                     translationX = 0f
                     translationZ = 0f
                     scaleX = 1f
@@ -40,7 +42,7 @@ class DepthPageTransformer : ViewPager2.PageTransformer {
                 }
                 else -> {
                     // This page is way off-screen to the right.
-                    alpha = 0f
+                    alpha = TRANSPARENT
                 }
             }
         }
