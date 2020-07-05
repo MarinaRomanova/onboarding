@@ -1,21 +1,30 @@
-package com.example.onboarding.onboarding
+package com.marinar.android.onboarding.onboarding
 
+import android.animation.ObjectAnimator
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
-import com.example.onboarding.R
+import com.marinar.android.onboarding.R
 import kotlinx.android.synthetic.main.activity_onboarding.*
 import kotlinx.android.synthetic.main.layout_button_bottom_sheet.*
 
-class OnBoardingActivity : AppCompatActivity() {
-    private val colors = arrayOf(R.color.blue_a30, R.color.green_300_a50, R.color.blueGrey_300_a50, R.color.pink)
+abstract class OnBoardingActivity : AppCompatActivity() {
 
-    private val viewModel: OnBoardingViewModel by viewModels { OnBoardingViewModelFactory() }
+    private var onPageChanged: OnPageChangedListener? = null
+
+    fun setOnPageChangedListener(listener: OnPageChangedListener) {
+        onPageChanged = listener
+    }
+    abstract val colors: List<Int>
+    abstract val fragments : ArrayList<Fragment>
+
+    private val viewModel: OnBoardingViewModel by viewModels { OnBoardingViewModelFactory(fragments.size) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +39,11 @@ class OnBoardingActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        pager.adapter = OnBoardingViewPagerAdapter(this)
+        val adapter = OnBoardingViewPagerAdapter(this)
+        adapter.screens = fragments
 
         pager.apply {
+            this.adapter = adapter
             registerOnPageChangeCallback(onPageChangeCallback)
             setPageTransformer(DepthPageTransformer())
         }
@@ -42,7 +53,7 @@ class OnBoardingActivity : AppCompatActivity() {
         })
 
 
-        slider_indicator.sliderCount = OnBoardingScreen.values().count()
+        slider_indicator.sliderCount = (pager.adapter as OnBoardingViewPagerAdapter).itemCount
 
         setupButtons()
     }
@@ -51,9 +62,11 @@ class OnBoardingActivity : AppCompatActivity() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
             viewModel.slideToPage(position)
-            translateTruck(position)
-            pager.setBackgroundColor(getBackgroundColor(position))
+            if (colors.isNotEmpty())
+                pager.setBackgroundColor(getBackgroundColor(position))
             slider_indicator.setSelected(position)
+            onPageChanged?.onPageChanged(position)
+            translateImage(position)
         }
     }
 
@@ -86,12 +99,16 @@ class OnBoardingActivity : AppCompatActivity() {
         }
     }
 
-    private fun translateTruck(screen: Int) {
-        val intervalPx = (Resources.getSystem().displayMetrics.widthPixels ) / OnBoardingScreen.values().count() - 1
-        val position: Float = (intervalPx * screen).toFloat()
-        //val animator = ObjectAnimator.ofFloat(truck_iv, View.TRANSLATION_X, position)
-        //animator.start()
+   private fun getBackgroundColor(position: Int) = ContextCompat.getColor(this, colors[position])
+
+    interface OnPageChangedListener {
+        fun onPageChanged(position: Int)
     }
 
-   private fun getBackgroundColor(position: Int) = ContextCompat.getColor(this, colors[position])
+    private fun translateImage(screen: Int) {
+        val intervalPx = (Resources.getSystem().displayMetrics.widthPixels ) / pager.adapter!!.itemCount - 1
+        val position: Float = (intervalPx * screen).toFloat()
+        val animator = ObjectAnimator.ofFloat(truck_iv, View.TRANSLATION_X, position)
+        animator.start()
+    }
 }
