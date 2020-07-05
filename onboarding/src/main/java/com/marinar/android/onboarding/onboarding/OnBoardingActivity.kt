@@ -21,13 +21,17 @@ import kotlinx.android.synthetic.main.layout_button_bottom_sheet.intro_btn_next
 import kotlinx.android.synthetic.main.layout_button_bottom_sheet.intro_btn_skip
 
 abstract class OnBoardingActivity : AppCompatActivity() {
-    var skipText: String? = null
-    var previousText: String? = null
-    var finishText: String? = null
 
-    //region abstract params
+    //region Public Params
+    var transformer: ViewPager2.PageTransformer? = null
+    //endregion
+
+    //region Abstract Params
     abstract val colors: List<Int>
     abstract val fragments: ArrayList<Fragment>
+    abstract val skipText: String?
+    abstract val previousText: String?
+    abstract val finishText: String?
     //endregion
 
     private val viewModel: OnBoardingViewModel by viewModels { OnBoardingViewModelFactory(fragments.size) }
@@ -56,7 +60,7 @@ abstract class OnBoardingActivity : AppCompatActivity() {
         pager.apply {
             this.adapter = adapter
             registerOnPageChangeCallback(onPageChangeCallback)
-            setPageTransformer(DepthPageTransformer())
+            setPageTransformer(transformer ?: DepthPageTransformer())
         }
 
         viewModel.currentIndex.observe(this, Observer {
@@ -123,8 +127,7 @@ abstract class OnBoardingActivity : AppCompatActivity() {
     private fun getBackgroundColor(position: Int) = ContextCompat.getColor(this, colors[position])
 
     private fun translateImage(screen: Int) {
-        val intervalPx =
-            (Resources.getSystem().displayMetrics.widthPixels) / pager.adapter!!.itemCount - 1
+        val intervalPx = Resources.getSystem().displayMetrics.widthPixels / pager.adapter!!.itemCount - 1
         val position: Float = (intervalPx * screen).toFloat()
         val animator = ObjectAnimator.ofFloat(moving_iv, View.TRANSLATION_X, position)
         animator.start()

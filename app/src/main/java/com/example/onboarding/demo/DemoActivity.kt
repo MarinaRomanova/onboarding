@@ -8,7 +8,7 @@ import com.example.onboarding.R
 import com.marinar.android.onboarding.onboarding.OnBoardingActivity
 
 
-class DemoActivity: OnBoardingActivity(), OnBoardingActivity.OnPageChangedListener, OnBoardingActivity.ClickListener {
+class DemoActivity : OnBoardingActivity(), OnBoardingActivity.OnPageChangedListener, OnBoardingActivity.ClickListener {
 
     override val colors: List<Int>
         get() = arrayListOf(R.color.blue_a30, R.color.green_300_a50, R.color.blueGrey_300_a50, R.color.pink)
@@ -21,6 +21,10 @@ class DemoActivity: OnBoardingActivity(), OnBoardingActivity.OnPageChangedListen
             return  screens as ArrayList<Fragment>
         }
 
+    override val skipText = "passer"
+    override val previousText = "précedent"
+    override val finishText = "finir"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,10 +34,6 @@ class DemoActivity: OnBoardingActivity(), OnBoardingActivity.OnPageChangedListen
 
         getDrawable(R.drawable.ic_truck_item_pl)?.let { setMovingImageDrawable(it)}
         getDrawable(R.drawable.bg_mission_status_pending_delivery)?.let { setBackgroundDrawable(it) }
-
-        previousText = "go back"
-        finishText = "Hurray, I am done"
-        skipText = "no, thanks"
 
         setClickListener(this)
     }
