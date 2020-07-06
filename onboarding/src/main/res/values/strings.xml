@@ -1,0 +1,5 @@
+<resources>
+    <string name="onboarding_btn_skip">Skip</string>
+    <string name="onboarding_btn_finish">Finish</string>
+    <string name="onboarding_btn_previous">Previous</string>
+</resources>
