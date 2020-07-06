@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Onboarding</string>
+
+    <string name="onboarding_welcome_title">Welcome!</string>
+    <string name="onboarding_welcome_message">It seems like you are just getting started.\n\nLet\'s learn how you can get the most of this app!</string>
+
+    <string name="onboarding_offer_title">Search trips</string>
+    <string name="onboarding_offer_message">Search trips using comprehensive filters and create custom searches for quick access!\n\nBook offers directly or make bids!</string>
+
+    <string name="onboarding_mission_title">Consult your bookings</string>
+    <string name="onboarding_mission_message">Get info on upcoming, ongoing or passed trips. \n\nUpdate travelers\'s info, submit documents.</string>
+
+    <string name="onboarding_settings_title">Get most of the App</string>
+    <string name="onboarding_settings_message">Configure Notifications and Location to get notified about new offers next to you and get help with your trips!</string>
+
+</resources>

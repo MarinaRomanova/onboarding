@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_gravity="bottom"
+    android:paddingStart="@dimen/screen_bounds_margin"
+    android:paddingLeft="@dimen/screen_bounds_margin"
+    android:paddingEnd="@dimen/screen_bounds_margin"
+    android:paddingRight="@dimen/screen_bounds_margin">
+
+    <Button
+        android:id="@+id/intro_btn_skip"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center"
+        android:textColor="@android:color/white"
+        android:text="@string/onboarding_btn_skip" />
+
+    <com.example.onboarding.view.SlideIndicator
+        android:id="@+id/slider_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <!-- This overlaps the next button in the last slide -->
+    <Button
+        android:id="@+id/intro_btn_finish"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        android:text="@string/onboarding_btn_finish" />
+
+    <ImageButton
+        android:id="@+id/intro_btn_next"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center"
+        android:src="@drawable/ic_chevron_right_24dp"
+        android:tint="@android:color/white" />
+
+</FrameLayout>

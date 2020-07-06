@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#FF000000</color>
+    <color name="darkPrimary">#FF000000</color>
+    <color name="accent">#FFC853</color>
+    <color name="primaryText">#fff</color>
+
+    <color name="indicator_unselected">@color/grey_100</color>
+    <color name="indicator_selected">@color/accent</color>
+    <color name="grey_100">#F6F6F6</color>
+    <color name="blue_a30">#4D277696</color>
+    <color name="green_300_a50">#88B9D476</color>
+    <color name="pink">#E49E95</color>
+    <color name="blueGrey_300_a50">#88819BA8</color>
+
+</resources>
