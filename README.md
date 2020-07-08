@@ -14,7 +14,7 @@ A simple library that helps to create Oboarding pages for Android apps
 
 - Inherit from the abstract ```OnBoardingActivity``` and implement its members:
    - ```fragments``` represents fragments to use inside the pager
-   - ```color``` represents colors to use as background inside the pager. Should correspond to the number of screens
+   - ```colors``` represents colors to use as background inside the pager.Colors used according their index, if there are more screens than colors available, the last color is reused.
    - ```skipText```, ```previousText``` and ```finishText``` are optional, pass null if you wish to use default values (keep in mind that those strings shouldn't be too long)
 
 ### Custom look
@@ -60,8 +60,8 @@ class DemoActivity : OnBoardingActivity(), OnBoardingActivity.OnPageChangedListe
             ContextCompat.getColor(this, R.color.primaryText),
             ContextCompat.getColor(this, R.color.accent))
 
-        getDrawable(R.drawable.ic_truck_item_pl)?.let { setMovingImageDrawable(it)}
-        getDrawable(R.drawable.bg_mission_status_pending_delivery)?.let { setDividerDrawable(it) }
+        getDrawable(R.drawable.ic_plane)?.let { setMovingImageDrawable(it)}
+        getDrawable(R.drawable.bg_divider)?.let { setDividerDrawable(it) }
 
         setClickListener(this)
     }
